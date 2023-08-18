@@ -1,0 +1,16 @@
+.places__like {
+  grid-area: like;
+  justify-self: center;
+  border: none;
+  width: 22px;
+  height: 19px;
+  padding: 0;
+  margin: 22px 20px 3px 0;
+  background: url(../../../images/like-icon.svg) no-repeat center / 100%;
+  cursor: pointer;
+  transition: opacity .3s;
+}
+
+.places__like:hover {
+  opacity: .6;
+}

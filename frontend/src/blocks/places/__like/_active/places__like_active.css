@@ -1,0 +1,7 @@
+.places__like_active {
+  background: url(../../../../images/like-icon-active.svg) no-repeat center / 100%;
+}
+
+.places__like_active:hover {
+  opacity: 1;
+}

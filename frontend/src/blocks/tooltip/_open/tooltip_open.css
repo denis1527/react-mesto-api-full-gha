@@ -1,0 +1,5 @@
+.tooltip_open {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity .5s;
+}

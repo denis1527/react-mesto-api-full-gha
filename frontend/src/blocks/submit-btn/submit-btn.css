@@ -1,0 +1,38 @@
+.submit-btn {
+  width: 100%;
+  min-height: 50px;
+  padding: 0;
+  margin-top:45px;
+  border: none;
+  border-radius: 2px;
+  box-sizing: border-box;
+  background-color: #000;
+  color: #fff;
+  font-size: 18px;
+  line-height: 1.22;
+  transition: opacity .3s;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  opacity: .8;
+}
+
+.submit-btn:disabled {
+  color: #000;
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 2px;
+  opacity: .2;
+  pointer-events: none;
+}
+
+@media (max-width: 549px) {
+
+  .submit-btn {
+    min-height: 46px;
+    font-size: 14px;
+    line-height: 1.21;
+  }
+  
+}

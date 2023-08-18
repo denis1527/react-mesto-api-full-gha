@@ -1,0 +1,11 @@
+.auth__signin {
+  font-size: 14px;
+  line-height: 1.21;
+  text-decoration: none;
+  color: #fff;
+  transition: opacity .3s;
+}
+
+.auth__signin:hover {
+  opacity: .6;
+}

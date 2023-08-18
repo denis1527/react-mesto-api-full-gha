@@ -1,0 +1,23 @@
+.edit-form__fieldset {
+  margin: 0;
+  border: 0;
+  padding-top: 45px;
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+}
+
+.edit-form__fieldset:first-of-type {
+  padding-top: 54px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+}
+
+@media (max-width: 549px) {
+
+  .edit-form__fieldset:first-of-type {
+    padding-top: 75px;
+  }
+
+}

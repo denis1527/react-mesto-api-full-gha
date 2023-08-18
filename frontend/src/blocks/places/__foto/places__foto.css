@@ -1,0 +1,7 @@
+.places__foto {
+  width: 100%;
+  grid-area: foto;
+  height: 282px;
+  object-fit: cover;
+  cursor: pointer;
+}

@@ -1,16 +1,25 @@
-[![Статус тестов](../../actions/workflows/tests.yml/badge.svg)](../../actions/workflows/tests.yml)
+# Portfolio project: "Around."
 
-# react-mesto-api-full
-Репозиторий для приложения проекта `Mesto`, включающий фронтенд и бэкенд части приложения со следующими возможностями: авторизации и регистрации пользователей, операции с карточками и пользователями. Бэкенд расположите в директории `backend/`, а фронтенд - в `frontend/`. 
-  
-Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
+online photo-sharing application, combines [frontend (React JS)](https://github.com/denis1527/react-mesto-api-full/tree/main/frontend) and [backend (Express JS)](https://github.com/denis1527/react-mesto-api-full/tree/main/backend)
 
-Адрес репозитория: https://github.com/...
+* Frontend Hosting: [https://denis1527.xyz/](https://denis1527.xyz/)
+* Server URL: [https://api.denis1527.xyz/](https://api.denis1527.xyz/)
+* Public IP Address: *51.250.78.213*
 
-## Ссылки на проект
 
-IP-адрес x.x.x.x
+### Functionality
+* User authorization and registration
+* Change user avatar
+* Edit user profile
+* Add and remove pics
+* "Like" for pics
+* Likes counter
+* Full-sized image preview
 
-Frontend https://...
+## Tech
+React JS | Express JS | Node.js | MongoDB | BEM | Adaptive design
 
-Backend https://...
+### TO DO
+- [ ] Finish mobile layouts
+- [ ] Add close popups with overlay click functionallity
+- [ ] Live form validation

@@ -1,0 +1,13 @@
+.places__item {
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: auto 42px;
+  grid-template-areas:
+    'foto foto'
+    'name like'
+    'name counter';
+  align-items: center;
+  position: relative;
+}
