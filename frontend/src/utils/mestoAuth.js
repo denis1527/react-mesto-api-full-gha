@@ -52,7 +52,7 @@ class MestoAuth {
 }
 
 const mestoAuth = new MestoAuth({
-  baseUrl: 'httpssu://denis1527.nomoreparties.co/api'
+  baseUrl: 'https://denis1527.nomoreparties.co/api'
 });
 
 export default mestoAuth;
