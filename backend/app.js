@@ -19,7 +19,7 @@ const limiter = rateLimit({
   max: 100, // limit each IP to 100 requests per windowMs
 });
 
-const uri = process.env.MONGO_URI;
+const uri = process.env.MONGO_URI || 'mongodb://localhost:27017/mydatabase';
 
 mongoose.connect(uri, {
   useNewUrlParser: true,

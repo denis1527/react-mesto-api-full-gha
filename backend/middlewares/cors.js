@@ -1,7 +1,7 @@
 const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
 const allowedCors = [
-  'https://denis1527.xyz',
-  'https://api.denis1527.xyz',
+  'https://denis1527.nomoreparties.co',
+  'https://api.denis1527.nomoreparties.co',
   'http://localhost:3000',
   'http://localhost:3001',
 ];

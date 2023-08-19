@@ -21,44 +21,42 @@ module.exports.getCurrentUser = (req, res, next) => {
   User.findById(req.user._id)
     .then((user) => {
       if (!user) {
-        throw new NotFoundError(StatusMessages.NOT_FOUND);
+        next(new NotFoundError(StatusMessages.NOT_FOUND));
+      } else {
+        res.status(StatusCodes.OK).send(user);
       }
-      res.status(StatusCodes.OK).send(user);
     })
     .catch((err) => {
       if (err.name === ErrorNames.CAST) {
-        throw new BadRequestError(StatusMessages.INVALID_ID);
+        next(new BadRequestError(StatusMessages.INVALID_ID));
+      } else {
+        next(err);
       }
-      next(err);
-    })
-    .catch(next);
+    });
 };
 
 module.exports.getUserById = (req, res, next) => {
   User.findById(req.params.userId)
     .then((user) => {
       if (!user) {
-        throw new NotFoundError(StatusMessages.NOT_FOUND);
+        next(new NotFoundError(StatusMessages.NOT_FOUND));
+      } else {
+        res.send(user);
       }
-      res.send(user);
     })
     .catch((err) => {
       if (err.name === ErrorNames.CAST) {
-        throw new BadRequestError(StatusMessages.INVALID_ID);
+        next(new BadRequestError(StatusMessages.INVALID_ID));
+      } else {
+        next(err);
       }
-      next(err);
-    })
-    .catch(next);
+    });
 };
 
 module.exports.createUser = (req, res, next) => {
   const {
     email, password, name, about, avatar,
   } = req.body;
-
-  if (!email || !password) {
-    throw new BadRequestError(StatusMessages.BAD_REQUEST);
-  }
 
   bcrypt.hash(req.body.password, 10)
     .then((hash) => {
@@ -68,23 +66,18 @@ module.exports.createUser = (req, res, next) => {
         .then((user) => res.status(StatusCodes.CREATED).send(user))
         .catch((err) => {
           if (err.name === ErrorNames.MONGO && err.code === StatusCodes.MONGO_ERROR) {
-            throw new ConflictError(StatusMessages.CONFLICT);
+            next(new ConflictError(StatusMessages.CONFLICT));
+          } else if (err.name === ErrorNames.VALIDATION) {
+            next(new BadRequestError(`Переданы некорректные данные при создании пользователя: ${err}`));
+          } else {
+            next(err);
           }
-          if (err.name === ErrorNames.VALIDATION) {
-            throw new BadRequestError(`Переданы некорректные данные при создании пользователя: ${err}`);
-          }
-          next(err);
-        })
-        .catch(next);
+        });
     });
 };
 
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
-
-  if (!email || !password) {
-    throw new BadRequestError(StatusMessages.BAD_REQUEST);
-  }
 
   User.findUserByCredentials(email, password)
     .then((user) => {
@@ -100,9 +93,6 @@ module.exports.login = (req, res, next) => {
       })
         .send({ token });
     })
-    .catch((err) => {
-      throw new UnauthorizedError(`${err.message}`);
-    })
     .catch(next);
 };
 
@@ -112,20 +102,20 @@ module.exports.updateProfile = (req, res, next) => {
   User.findByIdAndUpdate(req.user._id, { name, about }, { new: true, runValidators: true })
     .then((user) => {
       if (!user) {
-        throw new NotFoundError(StatusMessages.NOT_FOUND);
+        next(new NotFoundError(StatusMessages.NOT_FOUND));
+      } else {
+        res.send(user);
       }
-      res.send(user);
     })
     .catch((err) => {
       if (err.name === ErrorNames.CAST) {
-        throw new BadRequestError(StatusMessages.INVALID_ID);
+        next(new BadRequestError(StatusMessages.INVALID_ID));
+      } else if (err.name === ErrorNames.VALIDATION) {
+        next(new BadRequestError(`Переданы некорректные данные при обновлении профиля: ${err}`));
+      } else {
+        next(err);
       }
-      if (err.name === ErrorNames.VALIDATION) {
-        throw new BadRequestError(`Переданы некорректные данные при обновлении профиля: ${err}`);
-      }
-      next(err);
-    })
-    .catch(next);
+    });
 };
 
 module.exports.updateAvatar = (req, res, next) => {
@@ -134,20 +124,20 @@ module.exports.updateAvatar = (req, res, next) => {
   User.findByIdAndUpdate(req.user._id, { avatar }, { new: true, runValidators: true })
     .then((user) => {
       if (!user) {
-        throw new NotFoundError(StatusMessages.NOT_FOUND);
+        next(new NotFoundError(StatusMessages.NOT_FOUND));
+      } else {
+        res.send(user);
       }
-      res.send(user);
     })
     .catch((err) => {
       if (err.name === ErrorNames.CAST) {
-        throw new BadRequestError(StatusMessages.INVALID_ID);
+        next(new BadRequestError(StatusMessages.INVALID_ID));
+      } else if (err.name === ErrorNames.VALIDATION) {
+        next(new BadRequestError(`Переданы некорректные данные при обновлении аватара: ${err}`));
+      } else {
+        next(err);
       }
-      if (err.name === ErrorNames.VALIDATION) {
-        throw new BadRequestError(`Переданы некорректные данные при обновлении аватара: ${err}`);
-      }
-      next(err);
-    })
-    .catch(next);
+    });
 };
 
 module.exports.signOut = (req, res, next) => {
