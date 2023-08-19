@@ -2,8 +2,8 @@
 
 online photo-sharing application, combines [frontend (React JS)](https://github.com/denis1527/react-mesto-api-full/tree/main/frontend) and [backend (Express JS)](https://github.com/denis1527/react-mesto-api-full/tree/main/backend)
 
-* Frontend Hosting: [https://denis1527.xyz/](https://denis1527.xyz/)
-* Server URL: [https://api.denis1527.xyz/](https://api.denis1527.xyz/)
+* Frontend Hosting: [https://denis1527.nomoreparties.co/](https://denis1527.nomoreparties.co/)
+* Server URL: [https://denis1527.nomoreparties.co/](https://denis1527.nomoreparties.co/)
 * Public IP Address: *51.250.78.213*
 
 

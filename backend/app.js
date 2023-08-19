@@ -19,7 +19,7 @@ const limiter = rateLimit({
   max: 100, // limit each IP to 100 requests per windowMs
 });
 
-const uri = process.env.MONGO_URI || 'mongodb://localhost:27017/mydatabase';
+const uri = 'mongodb://localhost:27017/mydatabase';
 
 mongoose.connect(uri, {
   useNewUrlParser: true,
@@ -54,9 +54,8 @@ app.post('/signin', validateSignin, login);
 app.post('/signup', validateSignup, createUser);
 app.delete('/signout', signOut);
 
-app.use(auth);
-app.use('/users', require('./routes/users'));
-app.use('/cards', require('./routes/cards'));
+app.use('/users', auth, require('./routes/users'));
+app.use('/cards', auth, require('./routes/cards'));
 
 app.all('*', () => {
   throw new NotFoundError('Запрашиваемый ресурс не найден');

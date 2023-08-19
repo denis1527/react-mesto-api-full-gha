@@ -56,7 +56,7 @@ function App() {
     if (loggedIn) {
       history.push('/main');
     }
-  }, [loggedIn]);
+  }, [history, loggedIn]);
 
   const onLogin = ({ email, password }) => {
     return mestoAuth.authorize(email, password).then((res) => {

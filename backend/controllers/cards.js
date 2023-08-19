@@ -30,22 +30,22 @@ module.exports.deleteCard = (req, res, next) => {
   Card.findById(req.params.cardId)
     .then((card) => {
       if (!card) {
-        next(new NotFoundError(StatusMessages.NOT_FOUND));
-      } else if (JSON.stringify(card.owner) !== JSON.stringify(req.user._id)) {
-        next(new ForbiddenError(StatusMessages.FORBIDDEN));
+        throw new NotFoundError(StatusMessages.NOT_FOUND);
+      }
+      if (JSON.stringify(card.owner) !== JSON.stringify(req.user._id)) {
+        throw new ForbiddenError(StatusMessages.FORBIDDEN);
       } else {
         Card.deleteOne(card)
-          .then(() => res.status(StatusCodes.OK).send({ message: StatusMessages.OK }))
-          .catch(next);
+          .then(() => res.status(StatusCodes.OK).send({ message: StatusMessages.OK }));
       }
     })
     .catch((err) => {
       if (err.name === ErrorNames.CAST) {
-        next(new BadRequestError(StatusMessages.INVALID_ID));
-      } else {
-        next(err);
+        throw new BadRequestError(StatusMessages.INVALID_ID);
       }
-    });
+      next(err);
+    })
+    .catch(next);
 };
 
 module.exports.likeCard = (req, res, next) => {
@@ -56,18 +56,17 @@ module.exports.likeCard = (req, res, next) => {
   )
     .then((card) => {
       if (!card) {
-        next(new NotFoundError(StatusMessages.NOT_FOUND));
-      } else {
-        res.send(card);
+        throw new NotFoundError(StatusMessages.NOT_FOUND);
       }
+      res.send(card);
     })
     .catch((err) => {
       if (err.name === ErrorNames.CAST) {
-        next(new BadRequestError(StatusMessages.INVALID_ID));
-      } else {
-        next(err);
+        throw new BadRequestError(StatusMessages.INVALID_ID);
       }
-    });
+      next(err);
+    })
+    .catch(next);
 };
 
 module.exports.dislikeCard = (req, res, next) => {
@@ -78,17 +77,15 @@ module.exports.dislikeCard = (req, res, next) => {
   )
     .then((card) => {
       if (!card) {
-        next(new NotFoundError(StatusMessages.NOT_FOUND));
-      } else {
-        res.send(card);
+        throw new NotFoundError(StatusMessages.NOT_FOUND);
       }
+      res.send(card);
     })
     .catch((err) => {
       if (err.name === ErrorNames.CAST) {
-        next(new BadRequestError(StatusMessages.INVALID_ID));
-      } else {
-        next(err);
+        throw new BadRequestError(StatusMessages.INVALID_ID);
       }
-    });
+      next(err);
+    })
+    .catch(next);
 };
-
