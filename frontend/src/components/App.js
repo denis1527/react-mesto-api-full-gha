@@ -36,7 +36,7 @@ function App() {
       if (res) {
         setLoggedIn(true);
         setUserData({
-          email: res.data.email
+          email: res.email
         });
       }
     })
@@ -56,7 +56,7 @@ function App() {
     if (loggedIn) {
       history.push('/main');
     }
-  }, [loggedIn]);
+  }, [history, loggedIn]);
 
   const onLogin = ({ email, password }) => {
     return mestoAuth.authorize(email, password).then((res) => {
@@ -97,7 +97,7 @@ function App() {
         });
       api.getCards()
         .then((res) => {
-          setCards(res);
+          setCards(res.data);
         })
         .catch((err) => {
           console.log(`Ошибка: ${err}`);
@@ -170,7 +170,7 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => i === currentUser._id);
 
     if (!isLiked) {
       api.setLikeCard(card._id)

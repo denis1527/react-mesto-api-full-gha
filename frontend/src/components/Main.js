@@ -19,7 +19,7 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick, cards, onC
         <button className="profile__add-btn" type="button" onClick={onAddPlace}></button>
       </section>
       <section className="places">
-        {cards.map((card) => (
+        {cards.length > 0 && cards.map((card) => (
           <Card 
             card={card} 
             key={card._id} 
